@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { supabase } from '../config/supabaseClient.js';
 import transporter from '../config/nodemailer.js';
-import { SIGNUP_WELCOME_TEMPLATE, PASSWORD_RESET_TEMPLATE } from '../config/emailtemplates.js';
+import { SIGNUP_WELCOME_TEMPLATE,PASSWORD_RESET_TEMPLATE } from '../config/emailtemplates.js';
 // ✅ Signup
 export const signup = async (req, res) => {
   const { name, email, password } = req.body;
@@ -33,7 +33,7 @@ export const signup = async (req, res) => {
     if (error) throw error;
 
     // Send welcome email
-    const mailOptions = {
+     const mailOptions = {
       from: process.env.SENDER_EMAIL,
       to: email,
       subject: 'Welcome to the App',
@@ -79,11 +79,10 @@ export const login = async (req, res) => {
     // Set cookie
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // prod me true hoga
-      sameSite: 'None', // cross-origin frontend ke liye
+      secure: true, // prod me true karna
+      sameSite: 'none',
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
-
 
     // ✅ Send user data also
     return res.json({
