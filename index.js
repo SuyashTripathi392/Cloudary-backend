@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000
 
 
 app.use(cors({
-  origin: "https://cloudary-frontend.vercel.app/", 
+  origin: "https://cloudary-frontend.vercel.app", 
   credentials: true
 }));
 
