@@ -100,10 +100,11 @@ export const login = async (req, res) => {
 // ✅ Logout
 export const logout = async (req, res) => {
   res.clearCookie('token', {
-    httpOnly: true,
-    secure: false,
-    sameSite: 'Lax',
-  });
+  httpOnly: true,
+  secure: true,   // production ke liye ✅
+  sameSite: 'none' // cross-site cookie ke liye ✅
+});
+
   return res.json({ success: true, message: "Logout successful" });
 };
 
